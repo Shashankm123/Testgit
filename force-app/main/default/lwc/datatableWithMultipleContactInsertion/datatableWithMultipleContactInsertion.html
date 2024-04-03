@@ -1,0 +1,105 @@
+<template>
+    <!-- <lightning-card>
+        <div class="slds-var-p-horizontal_small">
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <div class="slds-combobox_container">
+                        <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                            <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                                <lightning-input type="text" id="combobox-id-1" value={accountName}
+                                onchange={handleKeyChange} onkeydown={handleKeyChange} onclick={handleClick}
+                                aria-activedescendant="option1" label='Account'
+                                aria-autocomplete="list" aria-controls="listbox-id-1" role="textbox"
+                                placeholder="Search..."></lightning-input>
+                            </div>
+                            <div if:true={messageResult}>
+                                No Result Found!
+                            </div>
+                            <template if:true={showSearchedValues} >
+                                <div class="slds-box" style="height: 130px; overflow-y: scroll;">
+                                    <ul >
+                                        <template for:each={accountList} for:item="actObj">
+                                            <li class="slds-var-p-around_x-small" style="cursor: pointer;" key={actObj.Id}
+                                                  onclick={handleParentSelection} onblur={handleBlur} data-value={actObj.Id}
+                                                  data-label={actObj.Name}> {actObj.Name}
+                                                </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>                                  
+        </div>
+    </lightning-card>-->
+   <!-- <template if:true={cardVisible} >-->
+        <lightning-card>
+            <h3 slot="title">
+                <lightning-icon icon-name="standard:contact" alternative-text="Event" size="small"></lightning-icon>
+                &nbsp;Insert Multiple Contacts
+            </h3>
+            <div slot="footer">
+                <lightning-button  label="Add" variant="brand"  onclick={addRow}>
+                </lightning-button>&nbsp;
+                <lightning-button  label="Save" variant="brand" onclick={saveMultipleContacts}>
+                </lightning-button>
+            </div>  
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="S.No">S.NO</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Contact Last Name">Contact LastName</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Contact Email">Contact Email</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Contact Phone">Contact Phone</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Account">AccountId</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Action">Action</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={contactRecList} for:item="contact" for:index="index">
+                        <tr key={keyIndex}>
+                            <td style="font-weight: bold"><c-serial-number-comp index={index}></c-serial-number-comp>
+                                <!--<lightning-formatted-number value={index}></lightning-formatted-number>.-->
+                            </td>
+                            <td>
+                                <lightning-input name='conLastName' access-key={index}  type='text' onchange={changeHandler}   value={contact.LastName}>
+                                </lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input name='conEmail' access-key={index}  type='Email' onchange={changeHandler}   value={contact.Email}>
+                                </lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input name='conPhone' access-key={index} type='Phone'   onchange={changeHandler} value={contact.Phone}>
+                                </lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input name='conAccountId' access-key={index}  type='text' onchange={changeHandler}   value={contact.AccountId}>
+                                </lightning-input>
+                            </td>
+                            <td>
+                                <template if:true={showDeleteIcon}> 
+                                <lightning-icon icon-name="action:delete"  access-key={index}  alternative-text="Click to Call" size="small" title="Delete Row" onclick={removeRow}>
+                                </lightning-icon>
+                               </template>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>      
+        </lightning-card>
+     <!--</template>-->
+</template>

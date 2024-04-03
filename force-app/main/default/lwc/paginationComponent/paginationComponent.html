@@ -1,0 +1,102 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card>
+        <template if:true={AccountList}>
+            <div class="slds-tabs_card">
+                <div class="slds-page-header">       
+                    <div class="slds-page-header__row">        
+                        <div class="slds-page-header__col-title">
+                            <div class="slds-media">
+                                <div class="slds-media__figure">
+                                    <span class="slds-icon_container slds-icon-standard-opportunity">
+                                         <lightning-icon icon-name="standard:contact" alternative-text="contact" title="contact"></lightning-icon>
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <div class="slds-page-header__name">
+                                        <div class="slds-page-header__name-title">
+                                            <h1>
+                                                <span>LIGHTNING DATATABLE</span>
+                                               <span class="slds-page-header__title slds-truncate" title="Recently Viewed">Account Records</span>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="slds-button-group"  role="group">
+            <div class="slds-button-group-row">
+                <div class="slds-col">
+        <lightning-button  label="create" size="small" variant="brand"  icon-name="utility:add"  
+        onclick={handleNavigation}
+        style="margin-left: 650% " ></lightning-button>
+        <lightning-button  title="Delete" label="Delete Selected Row" size="small"  icon-name="utility:delete" variant="destructive" icon-position="right" onclick={deleteAccRowAction}>
+        </lightning-button></div></div></div>
+    <lightning-datatable
+            key-field="Id"
+            data={AccountToDisplay}
+            columns={columns}
+            onrowaction={handleRowAction}
+            onsave={handleSave}
+            oncancel={handleCancel}
+            onrowselection={getSelectedIdAction}
+            >
+        </lightning-datatable>
+    <div class="slds-align_absolute-center slds-m-top_x-small">
+        <p class='slds-m-right_small'>Showing {pageParam} of {totalRecords} rows</p>
+        <lightning-button label="&#9668;&#9668;" class="slds-m-right_small slds-p-left_small slds-border_left" disabled={disablePrev} onclick={handleFirst} style="font-family: sans-serif;"></lightning-button>
+        <lightning-button label="&#9668;" class="slds-m-right_small" disabled={disablePrev} onclick={handlePrev}  style="font-family: sans-serif;"></lightning-button>
+        <lightning-combobox
+        name="progress"
+        label="Page"
+        class="slds-m-right_small PageSelectors"
+        value={currentPage}
+        dropdown-alignment='bottom-right'
+        onchange={handlePageChange}
+        variant="label-hidden"></lightning-combobox>       
+        <lightning-button label="&#9654;" class="slds-m-right_small" disabled={disableNext} onclick={handleNext}  style="font-family: sans-serif;"></lightning-button>
+        <lightning-button label="&#9654;&#9654;" class="slds-p-right_small slds-m-right_small slds-border_right" disabled={disableNext} onclick={handleLast}  style="font-family: sans-serif;"></lightning-button>
+        <lightning-combobox
+        class="slds-m-right_small PageSelectors slds-float_right"
+        value={pageLimit}
+        dropdown-alignment='bottom-right'
+        placeholder="Limit"
+        options={pageLimitOptions}
+        onchange={handleLimitChange}
+        variant="label-hidden"></lightning-combobox>
+    </div>
+    <c-create-Account-Record if:true ={showSearchComponent} ></c-create-Account-Record>
+</template>
+<template if:false={AccountList} >
+    <div class="slds-tabs_card">
+        <div class="slds-page-header">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-opportunity">
+                                 <lightning-icon icon-name="standard:contact" alternative-text="contact" title="contact"></lightning-icon>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span>LIGHTNING DATATABLE</span>
+                                        <span class="slds-page-header__title slds-truncate" title="Recently Viewed">No Account Records</span>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+</lightning-card>
+
+</template>
