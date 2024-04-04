@@ -1,5 +1,5 @@
 public with sharing class AccLookup {
-    public AccLookup(Integer value) {
+    public AccLookup(Decimal value) {
 
     }
     @AuraEnabled
